@@ -26,11 +26,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 7.4
+          extensions: mbstring, pdo, xml, zip, pcntl
 
       - name: Install Composer dependencies
         run: composer install
 
-      - name: Create an environment file
+      - name: Create an environment file for testing
         run: cp .env .env.testing
 
       - name: Clear Configuration Cache
@@ -46,5 +47,8 @@ jobs:
         run: php artisan test
 
         env:
-          DB_HOST: localhost
+          DB_HOST: 127.0.0.1
           DB_PORT: 3306
+          DB_DATABASE: your_testing_database_name
+          DB_USERNAME: root
+          DB_PASSWORD: ""
