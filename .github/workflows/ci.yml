@@ -42,7 +42,7 @@ jobs:
 
       - name: Create a testing database
         run: |
-          sudo /etc/init.d/mysql start
+          sudo service mysql restart
           sleep 10 # Wait for MySQL to start
           mysql -u root -h localhost -e "CREATE DATABASE IF NOT EXISTS github_leader_board_api_db"
           php artisan migrate --env=testing
