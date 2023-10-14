@@ -31,7 +31,7 @@ jobs:
         run: composer install
 
       - name: Create an environment file
-        run: cp .env.testing .env
+        run: cp .env .env.testing
 
       - name: Clear Configuration Cache
         run: php artisan config:clear
