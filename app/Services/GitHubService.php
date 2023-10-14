@@ -17,6 +17,19 @@ class GitHubService extends BaseService
     }
 
     /**
+     * Fetch the details of the selected GitHub repository
+     *
+     * @param  string  $owner — The repository owner
+     * @param  string  $repo — The repository name
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function fetchRepository(string $owner, string  $repo)
+    {
+        return $this->sendGetRequestToGitHubApi("repos/{$owner}/{$repo}");
+    }
+
+    /**
      * Get reponse message from github
      */
     public function getMessageFromGitHubApiResponse($aResponseAsArray)

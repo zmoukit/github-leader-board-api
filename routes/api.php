@@ -22,7 +22,8 @@ Route::group([
         $router->group([
             'prefix' => 'github/repos/',
         ], function ($router) {
-            $router->get('', 'GitHubController@listRepositories')->name('github.repos');
+            $router->get('', 'GitHubController@listRepositories');
+            $router->get('{owner}/{repo}', 'GitHubController@selectRepository');
         });
     });
 });
