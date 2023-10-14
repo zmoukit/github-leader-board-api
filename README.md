@@ -81,6 +81,6 @@ php artisan serve
 
     Users can choose a repository from the list.
 
--   **Leaderboard** `GET api/v1/github/repos/repos/{owner}/{repo}/pulls/{from?}` :
+-   **Leaderboard** `GET api/v1/github/repos/{owner}/{repo}/pulls/{from?}` :
 
     Users can view a leaderboard of contributors with their usernames, PR review counts, and PR counts, sorted by the number of PRs reviewed.

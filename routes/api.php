@@ -34,7 +34,7 @@ Route::group([
         ], function ($router) {
             $router->get('', 'GitHubController@listRepositories');
             $router->get('{owner}/{repo}', 'GitHubController@selectRepository');
-            $router->get('repos/{owner}/{repo}/pulls/{from?}', 'GitHubController@countReviewsAndPullRequests');
+            $router->get('{owner}/{repo}/pulls/{from?}', 'GitHubController@countReviewsAndPullRequests');
         });
     });
 });

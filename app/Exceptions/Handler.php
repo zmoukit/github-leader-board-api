@@ -50,6 +50,40 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        return parent::render($request, $exception);
+        if (method_exists($exception, 'getStatusCode')) {
+            $statusCode = $exception->getStatusCode();
+        } else {
+            $statusCode = 500;
+        }
+
+        switch ($statusCode) {
+            case 401:
+                $message = 'Unauthorized';
+                break;
+            case 403:
+                $message = 'Forbidden';
+                break;
+            case 404:
+                $message = 'Not Found';
+                break;
+            case 405:
+                $message = 'Method Not Allowed';
+                break;
+            case 422:
+                $message = $exception->original['message'];
+                break;
+            default:
+                $message = 'Whoops, looks like something went wrong';
+                break;
+        }
+
+        $response = array(
+            'status' => 'error',
+            'code1' => $statusCode,
+            'message' => $message,
+            "errors" => array($message)
+        );
+
+        return response()->json($response, $statusCode);
     }
 }
