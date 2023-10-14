@@ -30,6 +30,21 @@ class GitHubService extends BaseService
     }
 
     /**
+     * Count pull request and pull request reviews
+     *
+     * @param  string  $owner — The repository owner
+     * @param  string  $repo — The repository name
+     * @param null|string $from — The date we use in the filter (format: yyyymmmdd)
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function countReviewsAndPullRequests(string $owner, string $repo, string $from = null)
+    {
+        // Fetch data from the GitHub API
+        return $this->sendGetRequestToGitHubApi("repos/{$owner}/{$repo}/pulls");
+    }
+
+    /**
      * Get reponse message from github
      */
     public function getMessageFromGitHubApiResponse($aResponseAsArray)
