@@ -17,7 +17,17 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'v1',
 ], function ($router) {
-    $router->group([], function ($router) {
+
+    // auth routes
+    $router->group([
+        'prefix' => 'auth',
+    ], function ($router) {
+        $router->post('/login', 'AuthController@login');
+    });
+
+    $router->group([
+        'middleware' => 'auth.api'
+    ], function ($router) {
         // Github api routes
         $router->group([
             'prefix' => 'github/repos/',

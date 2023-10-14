@@ -54,7 +54,14 @@ public function boot()
 }
 ```
 
-6 - Start the Laravel development server:
+6 - Run the seeder to populate your database with fake user data. The use is necessary to get a token.
+
+```
+php artisan db:seed --class=UsersTableSeeder
+
+```
+
+7 - Start the Laravel development server:
 
 ```
 php artisan serve
@@ -62,8 +69,18 @@ php artisan serve
 
 ## Main Features
 
--   `GET api/v1/github/repos`, **List Repositories** : Users can list their repositories.
+-   **Get login Token** `POST api/v1/auth/login` :
 
--   `GET api/v1/github/repos/{owner}/{repo}`, **Select Repository** : Users can choose a repository from the list.
+    Get your access token.
 
--   `GET api/v1/github/repos/repos/{owner}/{repo}/pulls/{from?}`, **Leaderboard** : Users can view a leaderboard of contributors with their usernames, PR review counts, and PR counts, sorted by the number of PRs reviewed.
+-   **List Repositories** `GET api/v1/github/repos` :
+
+    Users can list their repositories.
+
+-   **Select Repository** `GET api/v1/github/repos/{owner}/{repo}` :
+
+    Users can choose a repository from the list.
+
+-   **Leaderboard** `GET api/v1/github/repos/repos/{owner}/{repo}/pulls/{from?}` :
+
+    Users can view a leaderboard of contributors with their usernames, PR review counts, and PR counts, sorted by the number of PRs reviewed.
