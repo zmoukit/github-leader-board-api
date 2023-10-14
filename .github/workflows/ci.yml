@@ -49,6 +49,6 @@ jobs:
         env:
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: your_testing_database_name
+          DB_DATABASE: github_leader_board_api_db
           DB_USERNAME: root
           DB_PASSWORD: ""
