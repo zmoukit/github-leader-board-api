@@ -1,4 +1,4 @@
-name: Run Tests on Push
+name: Build and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  laravel-test:
+  build:
     runs-on: ubuntu-latest
 
     services:
@@ -40,12 +40,13 @@ jobs:
       - name: Generate an application key
         run: php artisan key:generate
 
-      - name: Create a testing database
+      - name: Create Database
         run: |
-          sudo service mysql restart
           sleep 10 # Wait for MySQL to start
           mysql -u root -h localhost -e "CREATE DATABASE IF NOT EXISTS github_leader_board_api_db"
-          php artisan migrate --env=testing
+
+      - name: Laravel Migrate
+        run: php artisan migrate --env=testing
 
       - name: Run tests
         run: php artisan test
