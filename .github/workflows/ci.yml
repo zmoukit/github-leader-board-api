@@ -32,7 +32,7 @@ jobs:
         run: composer install
 
       - name: Create an environment file for testing
-        run: cp .env .env.testing
+        run: cp .env.example .env.testing
 
       - name: Clear Configuration Cache
         run: php artisan config:clear
@@ -41,7 +41,9 @@ jobs:
         run: php artisan key:generate
 
       - name: Create a testing database
-        run: php artisan migrate --env=testing
+        run: |
+          mysql -u root -e "CREATE DATABASE IF NOT EXISTS github_leader_board_api_db"
+          php artisan migrate --env=testing
 
       - name: Run tests
         run: php artisan test
