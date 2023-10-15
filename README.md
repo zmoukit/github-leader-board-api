@@ -84,3 +84,68 @@ php artisan serve
 -   **Leaderboard** `GET api/v1/github/repos/{owner}/{repo}/pulls/{from?}` :
 
     Users can view a leaderboard of contributors with their usernames, PR review counts, and PR counts, sorted by the number of PRs reviewed.
+
+## Unit Tests
+
+Project is built with testing in mind. to run tests, execute the command below from terminal:
+
+```
+php artisan test
+```
+
+## CI / CD
+
+Set up a GitHub Action that triggers on a push to the `master` or `preprod` branches.
+
+## Responses Example
+
+-   Successful login response
+
+```
+{
+    "status": "success",
+    "code": 200,
+    "message": "",
+    "data": {
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE2OTczMjk4OTcsImV4cCI6MTY5NzM1ODY5NywibmJmIjoxNjk3MzI5ODk3LCJqdGkiOiJsYUhFUWhsZW9JalYxaTlLIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.CpIoDD0ccpCHZqPdw4BsB5xntBntoU5DNI_bl7Bxvgc",
+        "token_type": "bearer",
+        "expires_in": 28800
+    }
+}
+``
+
+- Failed login response
+
+```
+
+{
+"status": "error",
+"code": 400,
+"message": "Invalid Data.",
+"errors": {
+"email": [
+"The Email must be a valid email address."
+],
+"password": [
+"The Password field is required."
+]
+}
+}
+``
+
+-   Successful response
+
+```
+{
+    "status": "success",
+    "code": 200,
+    "message": "Repository fetched successfully",
+    "data": {
+        "AliHMIMS": {
+            "prs_count": 1,
+            "prs_reviews_count": 1
+        }
+    }
+}
+``
+```

@@ -79,7 +79,7 @@ class Handler extends ExceptionHandler
 
         $response = array(
             'status' => 'error',
-            'code1' => $statusCode,
+            'code' => $statusCode,
             'message' => $message,
             "errors" => array($message)
         );
