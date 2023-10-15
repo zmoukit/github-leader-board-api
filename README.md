@@ -95,7 +95,7 @@ php artisan test
 
 ## CI / CD
 
-Set up a GitHub Action that triggers on a push to the `master` or `preprod` branches.
+Set up a GitHub Action that triggers on a push to the `master` or `preprod` branch
 
 ## Responses Example
 
@@ -112,26 +112,25 @@ Set up a GitHub Action that triggers on a push to the `master` or `preprod` bran
         "expires_in": 28800
     }
 }
-``
-
-- Failed login response
-
 ```
 
+-   Failed login response
+
+```
 {
-"status": "error",
-"code": 400,
-"message": "Invalid Data.",
-"errors": {
-"email": [
-"The Email must be a valid email address."
-],
-"password": [
-"The Password field is required."
-]
+    "status": "error",
+    "code": 400,
+    "message": "Invalid Data.",
+    "errors": {
+        "email": [
+            "The Email must be a valid email address."
+        ],
+        "password": [
+            "The Password field is required."
+        ]
+    }
 }
-}
-``
+```
 
 -   Successful response
 
@@ -147,5 +146,4 @@ Set up a GitHub Action that triggers on a push to the `master` or `preprod` bran
         }
     }
 }
-``
 ```
