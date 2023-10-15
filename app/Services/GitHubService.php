@@ -85,4 +85,34 @@ class GitHubService extends BaseService
         return Http::withToken($gitHubToken)
             ->get($baseUrl . $endpoint);
     }
+
+    /**
+     * Send Get request to Github api using curl
+     */
+    private function sendCurlGetRequest(string $endpoint)
+    {
+        $gitHubToken = $this->getGitHubToken();
+        $baseUrl = $this->getGitHubApiBaseUrl();
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $baseUrl . $endpoint);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization: Bearer ' . $gitHubToken
+        ));
+
+        $response = curl_exec($ch);
+
+        if ($response === false) {
+            echo 'cURL Error: ' . curl_error($ch);
+        } else {
+            $data = json_decode($response, true);
+        }
+
+        curl_close($ch);
+
+        return $data;
+    }
 }
